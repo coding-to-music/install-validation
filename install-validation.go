@@ -5,6 +5,8 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
+	"log"
 	"os/exec"
 )
 
@@ -128,6 +130,9 @@ func validate(data_arr []InstallItems) int {
 			fmt.Println(Yellow(elem.validatecmd))
 
 			out, err := exec.Command("bash", "-cl", elem.validatecmd).Output()
+
+			// cmd.Stderr = cmd.Stdout
+
 			// cmd := exec.Command(elem.validatecmd)
 			// cmd := exec.Command(app, elem.installcmd)
 			// stdout, err := cmd.Output()
@@ -140,6 +145,15 @@ func validate(data_arr []InstallItems) int {
 				fmt.Println(Red("string(out)"))
 				fmt.Println(Red(string(out)))
 				errors++
+
+				// for {
+				// 	tmp := make([]byte, 1024)
+				// 	_, err := out.Read(tmp)
+				// 	fmt.Print(string(tmp))
+				// 	if err != nil {
+				// 		break
+				// 	}
+				// }
 
 				if elem.run {
 
@@ -208,6 +222,13 @@ func main() {
 
 	fmt.Println("Hello, playground")
 	fmt.Println("\n")
+
+	content, err := ioutil.ReadFile("testdata/hello")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("File contents: %s", content)
 
 	validate(InstallItemsCity)
 
