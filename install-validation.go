@@ -5,8 +5,6 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
-	"log"
 	"os/exec"
 )
 
@@ -26,30 +24,30 @@ var InstallItemsCity = []InstallItems{
 		"sudo apt update"},
 	{true, true, "echo $PATH", "echo $PATH", "echo $PATH"},
 	{false, true, "whoami", "whoami", "whoami"},
-	{false, true, "ansible", "sudo apt install -y ansible", "ansible --version"},
-	{false, true, "docker as sudo", "sudo docker run hello-world", "sudo docker run hello-world"},
-	{false, true, "docker as regular-user", "docker run hello-world", "docker run hello-world"},
-	{false, true, "tree", "sudo apt install -y tree", "tree --version"},
-	{false, true, "ncdu", "sudo apt install -y ncdu", "ncdu -v"},
-	{false, true, "vscode", "code --version", "code --version"},
-	{false, true, "kind", "kind --version", "kind --version"},
-	{false, true, "doctl", "doctl version", "doctl version"},
-	{false, true, "python3", "sudo apt install -y python3", "python3 --version"},
-	{false, true, "see how we are configured with GitHub", "git config --list", "git config --list"},
+	// {false, true, "ansible", "sudo apt install -y ansible", "ansible --version"},
+	// {false, true, "docker as sudo", "sudo docker run hello-world", "sudo docker run hello-world"},
+	// {false, true, "docker as regular-user", "docker run hello-world", "docker run hello-world"},
+	// {false, true, "tree", "sudo apt install -y tree", "tree --version"},
+	// {false, true, "ncdu", "sudo apt install -y ncdu", "ncdu -v"},
+	// {false, true, "vscode", "code --version", "code --version"},
+	// {false, true, "kind", "kind --version", "kind --version"},
+	// {false, true, "doctl", "doctl version", "doctl version"},
+	// {false, true, "python3", "sudo apt install -y python3", "python3 --version"},
+	// {false, true, "see how we are configured with GitHub", "git config --list", "git config --list"},
 	{true, true, "Check that GitHub can be reached via SSH", "ssh -vT git@github.com", "ssh -vT git@github.com"},
-	{true, true, "NodeJS", "sudo apt install -y node", "node --version"},
-	{true, true, "python", "sudo apt install -y python", "python --version"},
+	// {true, true, "NodeJS", "sudo apt install -y node", "node --version"},
+	// {true, true, "python", "sudo apt install -y python", "python --version"},
 
-	{true, true, "kubectl 0", "kubectl version", "kubectl version"},
-	{true, true, "kubectl 1: Update the apt package index and install packages needed to use the Kubernetes apt repository", "sudo apt-get install -y apt-transport-https ca-certificates curl", "kubectl version"},
-	{true, true, "kubectl 2: Download the Google Cloud public signing key", "sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg", "kubectl version"},
-	{true, true, "kubectl 3: Add the Kubernetes apt repository", "echo 'deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main' | sudo tee /etc/apt/sources.list.d/kubernetes.list", "kubectl version"},
-	{true, true, "kubectl 4: Update apt package index with the new repository and install kubectl", "sudo apt-get install -y kubectl", "kubectl version"},
-	{true, true, "kubectl 5", "kubectl version", "kubectl version"},
+	// {true, true, "kubectl 0", "kubectl version", "kubectl version"},
+	// {true, true, "kubectl 1: Update the apt package index and install packages needed to use the Kubernetes apt repository", "sudo apt-get install -y apt-transport-https ca-certificates curl", "kubectl version"},
+	// {true, true, "kubectl 2: Download the Google Cloud public signing key", "sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg", "kubectl version"},
+	// {true, true, "kubectl 3: Add the Kubernetes apt repository", "echo 'deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main' | sudo tee /etc/apt/sources.list.d/kubernetes.list", "kubectl version"},
+	// {true, true, "kubectl 4: Update apt package index with the new repository and install kubectl", "sudo apt-get install -y kubectl", "kubectl version"},
+	// {true, true, "kubectl 5", "kubectl version", "kubectl version"},
 
-	{true, true, "golang", "go version", "go version"},
-	{true, true, "whereis go", "whereis go", "whereis go"},
-	{true, true, "test the ansible connection", "ansible -m ping TestClient", "ansible -m ping TestClient"},
+	// {true, true, "golang", "go version", "go version"},
+	// {true, true, "whereis go", "whereis go", "whereis go"},
+	// {true, true, "test the ansible connection", "ansible -m ping TestClient", "ansible -m ping TestClient"},
 }
 
 var (
@@ -125,6 +123,7 @@ func validate(data_arr []InstallItems) int {
 
 			fmt.Println(descColor("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"))
 			fmt.Println(descColor(elem.desc))
+
 			fmt.Println(descColor("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"))
 
 			fmt.Println(Yellow(elem.validatecmd))
@@ -186,52 +185,71 @@ func validate(data_arr []InstallItems) int {
 		}
 	}
 	return errors
-
 }
 
+//
+
+// 	func print-hello-world(data_arr []InstallItems) int {
+// 	fmt.Println(Info("Hello World at the command line from server.go"))
+// 	fmt.Println(Info("Invoke with go run main.go"))
+// 	fmt.Println("\n")
+
+// 	fmt.Println(Info("hello, Info world!"))
+// 	fmt.Println(Warn("hello, Warn world!"))
+// 	fmt.Println(Fatal("hello, Fatal world!"))
+// 	fmt.Println("\n")
+
+// 	fmt.Println(Black("hello, Black world!"))
+// 	fmt.Println(Red("hello, Red world!"))
+// 	fmt.Println(Green("hello, Green world!"))
+// 	fmt.Println(Yellow("hello, Yellow world!"))
+// 	fmt.Println(Purple("hello, Purple world!"))
+// 	fmt.Println(Magenta("hello, Magenta world!"))
+// 	fmt.Println(White("hello, White world!"))
+// 	fmt.Println(Teal("hello, Teal world!"))
+// 	fmt.Println(Green("hello, Green need Blue world!"))
+// 	fmt.Println("\n")
+
+// 	fmt.Println(descColor("hello, descColor world!"))
+// 	fmt.Println(installcmdColor("hello, installcmdColor world!"))
+// 	fmt.Println(validatecmdColor("hello, validatecmdColor world!"))
+// 	fmt.Println(successColor("hello, successColor world!"))
+// 	fmt.Println(errorColor("hello, errorColor world!"))
+// 	fmt.Println(InstallRequestedColor("hello, InstallRequestedColor world!"))
+// 	fmt.Println(InstallErrorColor("hello, InstallErrorColor world!"))
+// 	fmt.Println(InstallPassedColor("hello, InstallPassedColor world!"))
+
+// //	func print-hello-world() {
+
+// 	// = Teal
+// 	// installcmdColor  = Yellow
+// 	// validatecmdColor = Red
+// 	// successColor     = Green
+// 	// errorColor       = Red
+
+// 	fmt.Println("\n")
+
+// 	fmt.Println("Hello, playground")
+// 	fmt.Println("\n")
+
+// 	content, err := ioutil.ReadFile("/home/tmc/testdata/hello")
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
+
+// 	fmt.Printf("File contents: %s", content)
+// 	fmt.Println("\n")
+
+// }
 func main() {
-	fmt.Println(Info("Hello World at the command line from server.go"))
-	fmt.Println(Info("Invoke with go run main.go"))
-	fmt.Println("\n")
 
-	fmt.Println(Info("hello, Info world!"))
-	fmt.Println(Warn("hello, Warn world!"))
-	fmt.Println(Fatal("hello, Fatal world!"))
-	fmt.Println("\n")
-
-	fmt.Println(Black("hello, Black world!"))
-	fmt.Println(Red("hello, Red world!"))
-	fmt.Println(Green("hello, Green world!"))
-	fmt.Println(Yellow("hello, Yellow world!"))
-	fmt.Println(Purple("hello, Purple world!"))
-	fmt.Println(Magenta("hello, Magenta world!"))
-	fmt.Println(White("hello, White world!"))
-	fmt.Println(Teal("hello, Teal world!"))
-	fmt.Println(Green("hello, Green need Blue world!"))
-	fmt.Println("\n")
-
-	fmt.Println(descColor("hello, descColor world!"))
-
-	// = Teal
-	// installcmdColor  = Yellow
-	// validatecmdColor = Red
-	// successColor     = Green
-	// errorColor       = Red
-
-	fmt.Println("\n")
-
-	fmt.Println("Hello, playground")
-	fmt.Println("\n")
-
-	content, err := ioutil.ReadFile("testdata/hello")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Printf("File contents: %s", content)
-	fmt.Println("\n")
-
+	// print - hello - world(InstallItemsCity)
 	validate(InstallItemsCity)
+
+	fmt.Println(descColor("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"))
+	fmt.Println(descColor("Available Items"))
+
+	fmt.Println(descColor("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"))
 
 	fmt.Println("\n")
 	fmt.Println(installcmdColor("ValidateAvailableCount = ", ValidateAvailableCount))
@@ -240,9 +258,13 @@ func main() {
 	fmt.Println(errorColor("ValidateErrorCount = ", ValidateErrorCount))
 	fmt.Println("\n")
 
+	fmt.Println(successColor("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"))
+	fmt.Println(successColor("Run Results"))
+
 	fmt.Println(InstallRequestedColor("InstallAvailableCount = ", InstallAvailableCount))
 	fmt.Println(InstallRequestedColor("InstallRequestedCount = ", InstallRequestedCount))
 	fmt.Println(InstallPassedColor("InstallPassedCount = ", InstallPassedCount))
 	fmt.Println(InstallErrorColor("InstallErrorCount = ", InstallErrorCount))
+	fmt.Println(successColor("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"))
 
 }
